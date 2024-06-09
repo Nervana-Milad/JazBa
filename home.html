@@ -99,7 +99,7 @@
                 <span class="auto-type fw-normal fs-3"></span>
               </div>
               <div class="d-grid gap-2 col-6 mx-auto">
-                <a class="btn btn-primary" type="button" href="payment.html">
+                <a class="btn btn-primary" type="button" href="donate.html">
                   Choose payment method
                 </a>
               </div>
@@ -108,47 +108,6 @@
         </div>
       </section>
     </main>
-
-    <!-- <script src="https://cdn.jsdelivr.net/npm/purecounterjs/dist/purecounter.min.js"></script>
-    <script>
-      function animateCounter(element, start, end, duration) {
-        let range = end - start;
-        let current = start;
-        let increment = end > start ? 1 : -1;
-        let stepTime = Math.abs(Math.floor(duration / range));
-        let timer = setInterval(function () {
-          current += increment;
-          element.textContent = current;
-          if (current == end) {
-            clearInterval(timer);
-          }
-        }, stepTime);
-      }
-
-      function startCounterWhenVisible(entries, observer) {
-        entries.forEach((entry) => {
-          if (
-            entry.isIntersecting &&
-            entry.target.getAttribute("data-visible") === "false"
-          ) {
-            entry.target.setAttribute("data-visible", "true");
-            let startValue = parseInt(entry.target.dataset.purecounterStart);
-            let endValue = parseInt(entry.target.dataset.purecounterEnd);
-            let duration = parseInt(entry.target.dataset.purecounterDuration);
-            animateCounter(entry.target, startValue, endValue, duration);
-          }
-        });
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        let observer = new IntersectionObserver(startCounterWhenVisible, {
-          threshold: 0.5,
-        });
-        document
-          .querySelectorAll(".purecounter")
-          .forEach((counter) => observer.observe(counter));
-      });
-    </script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <script>
