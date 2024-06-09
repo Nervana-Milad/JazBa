@@ -1,0 +1,83 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --main-color: rgb(107 48 48);
+  --white-color: white;
+  --bg-color: rgb(247, 232, 214);
+}
+
+*::selection {
+  color: var(--white-color);
+  background-color: var(--main-color);
+}
+
+.my-nav {
+  background-color: rgba(247, 232, 214, 0);
+}
+
+body {
+  background-color: var(--bg-color);
+}
+
+main {
+  margin-top: 0px;
+  padding-top: 10px;
+}
+
+.bg-color {
+  background-color: var(--bg-color);
+}
+
+.navbar-toggler {
+  padding: 0rem 0.25rem;
+}
+
+.navbar ul li a {
+  color: var(--white-color);
+}
+
+.navbar {
+  --bs-navbar-brand-color: var(--white-color);
+  width: 100%;
+  background-color: var(--main-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-underline .nav-link {
+  padding-right: 0;
+  padding-left: 0;
+  border-bottom: 4px solid transparent;
+}
+.brdr-bottom {
+  border: 3px solid var(--white-color);
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+  color: var(--bs-card-color);
+  background-color: var(--bg-color);
+}
+
+.card {
+  --bs-card-border-color: var(--main-color);
+  border: 3px solid var(--main-color);
+  border-radius: 5px;
+}
+
+.container {
+  overflow: hidden;
+}
+
+.card {
+  transition: transform 2s;
+  /* Add perspective for 3D effect */
+}
+
+.card:hover {
+  transform: rotateZ(360deg);
+}

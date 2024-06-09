@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body class="d-flex justify-content-center align-items-center vh-100">
+    <img src="./images/bg.jpg" class="img-fluid" alt="" />
+    <section class="text-white my-form position-absolute">
+      <div class="container">
+        <h1 class="fs-2 text-center py-3">Smart Login System</h1>
+
+        <div class="mb-3 d-flex flex-column w-100">
+          <div
+            class="input-group input-box d-flex align-items-center justify-content-between"
+          >
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Enter Your Email"
+              oninput="validateFormInputs(this)"
+              id="userEmail"
+            />
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+          <span class="text-danger d-none"> Enter valid email </span>
+          <div class="error-message d-none text-danger" id="emailExistsError">
+            Email does not exist.
+          </div>
+        </div>
+
+        <div class="mb-3 d-flex flex-column w-100">
+          <div
+            class="input-group input-box d-flex align-items-center justify-content-between"
+          >
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Enter Your Password"
+              oninput="validateFormInputs(this)"
+              id="userPass"
+            />
+            <i class="fa-solid fa-lock ps-3"></i>
+          </div>
+          <span class="text-danger d-none">
+            Password should contain more than 8 characters includes uppercase,
+            lowercase, number and special characters.
+          </span>
+          <div
+            class="error-message d-none text-danger"
+            id="incorrectPasswordError"
+          >
+            Password not correct.
+          </div>
+        </div>
+        <div class="w-75 mx-auto py-2">
+          <a id="directionLink">
+            <button
+              class="btn btn-success w-100 signBtn"
+              onclick="signInUser()"
+              type="submit"
+            >
+              Sign In
+            </button>
+          </a>
+        </div>
+        <div class="text-center py-3 no-account">
+          <h6>
+            Don't have an account?
+            <b><a href="register.html">Sign up</a></b>
+          </h6>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://kit.fontawesome.com/7ec47829ba.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
