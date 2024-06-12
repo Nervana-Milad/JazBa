@@ -6,6 +6,7 @@
     <title>Payments</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/all.min.css" />
+    <link rel="stylesheet" href="./css/index.css" />
     <link rel="stylesheet" href="./css/donate.css" />
   </head>
   <body>
@@ -71,24 +72,291 @@
                 >Contact</a
               >
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link ms-3 fw-bold"
+                aria-current="page"
+                href="index.html"
+                >Logout</a
+              >
+            </li>
           </ul>
         </div>
       </div>
     </nav>
     <section>
-      <form action="">
-        <h3>Donation amount</h3>
-        <h3>Phone</h3>
-        <h3>City</h3>
-        <h3>State</h3>
-      </form>
+      <div
+        class="container pt-7 vh-100 d-flex justify-content-between align-items-center"
+      >
+        <div class="row">
+          <div class="col-md-6 col-12 my-form">
+            <h1 class="fs-2 text-center py-3">Donor Information</h1>
+
+            <div class="mb-3 d-flex flex-column w-100">
+              <div
+                class="input-group input-box d-flex align-items-center justify-content-between"
+              >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter amout..."
+                  oninput="validateFormInputs(this)"
+                  id="userDonation"
+                  required
+                />
+                <i class="fa-solid fa-money-check-dollar"></i>
+              </div>
+              <span class="text-danger d-none"
+                >Must enter amount you want to donate</span
+              >
+            </div>
+            <div class="mb-3 d-flex flex-column w-100">
+              <div
+                class="input-group input-box d-flex align-items-center justify-content-between"
+              >
+                <input
+                  type="tel"
+                  class="form-control"
+                  placeholder="Enter Your Phone..."
+                  oninput="validateFormInputs(this)"
+                  id="userPhone"
+                  required
+                />
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <span class="text-danger d-none">Enter valid phne number</span>
+            </div>
+            <div class="mb-3 d-flex flex-column w-100">
+              <div
+                class="input-group input-box d-flex align-items-center justify-content-between"
+              >
+                <select class="form-control" id="userCountry">
+                  <option value="" disabled selected>
+                    Select Your Country
+                  </option>
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="GB">United Kingdom</option>
+                  <option value="AU">Australia</option>
+                  <option value="DE">Germany</option>
+                  <option value="FR">France</option>
+                  <option value="IN">India</option>
+                  <option value="JP">Japan</option>
+                  <option value="EG">Egypt</option>
+                </select>
+                <i class="fa-solid fa-globe ps-3"></i>
+              </div>
+              <span class="text-danger d-none">Please select a country.</span>
+            </div>
+
+            <div class="mb-3 d-flex flex-column w-100">
+              <div
+                class="input-group input-box d-flex align-items-center justify-content-between"
+              >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Your state..."
+                  oninput="validateFormInputs(this)"
+                  id="userState"
+                  required
+                />
+                <i class="fa-solid fa-flag"></i>
+              </div>
+              <span class="text-danger d-none"> Required feild.. </span>
+            </div>
+            <div class="py-2 d-flex justify-content-between align-items-center">
+              <h5 id="whatDonation">Donation amount:</h5>
+
+              <button
+                class="btn btn-success continueBtn"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+                
+              >
+                Continue
+              </button>
+              
+            </div>
+            <div
+              class="text-blue d-none text-center fs-4"
+              id="donationSuccessfully"
+            >
+               Thank you for your lovely heart
+              <i class="fa-solid fa-heart text-blue"></i>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <img src="./images/donateHero.jpg" class="img-fluid" alt="" />
+          </div>
+        </div>
+      </div>
     </section>
+
+    <section>
+      <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                Select Payment method..
+              </h1>
+              <button
+                type="button"
+                class="btn-close closeBtn"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+            
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form id="paymentForm">
+                <div class="row">
+                  <div class="col-6 g-3">
+                    <div class="form-check pb-3 pt-1">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="paymentMethod"
+                        id="wireTransfer"
+                        value="Wire Transfer"
+                        required
+                      />
+                      <label class="form-check-label" for="wireTransfer">
+                        Wire Transfer
+                      </label>
+                    </div>
+                    <div class="form-check pb-3 pt-1">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="paymentMethod"
+                        id="creditCard"
+                        value="Credit Card"
+                        required
+                      />
+                      <label class="form-check-label" for="creditCard">
+                        Credit Card
+                      </label>
+                    </div>
+                    <div class="form-check pb-3 pt-1">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="paymentMethod"
+                        id="debitCard"
+                        value="Debit Card"
+                        required
+                      />
+                      <label class="form-check-label" for="debitCard">
+                        Debit Card
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-6 g-3">
+                    <div class="form-check pb-3 pt-1">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="paymentMethod"
+                        id="eWallet"
+                        value="E-Wallet"
+                        required
+                      />
+                      <label class="form-check-label" for="eWallet">
+                        E-Wallet
+                      </label>
+                    </div>
+                    <div class="form-check pb-3 pt-1">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="paymentMethod"
+                        id="onlineBanking"
+                        value="Online Banking"
+                        required
+                      />
+                      <label class="form-check-label" for="onlineBanking">
+                        Online Banking
+                      </label>
+                    </div>
+                    <div class="form-check pb-3 pt-1">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="paymentMethod"
+                        id="upiQr"
+                        value="UPI / QR"
+                        required
+                      />
+                      <label class="form-check-label" for="upiQr">
+                        UPI / QR
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="submit"
+                class="btn btn-secondary closeBtn"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-success"
+                id="continueBtn"
+              >
+                Continue
+              </button>
+            </div>          
+        </div>
+      </div>
+    </section>
+
+    <div class="modal fade" id="paymentMethodDetailsModal" tabindex="-1" aria-labelledby="paymentMethodDetailsLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="paymentMethodDetailsLabel">Payment Method Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="paymentMethodDetailsContent">
+            <!-- Content will be populated by JavaScript -->
+          </div>
+          <div
+          class="text-blue d-none text-center fs-4"
+          id="donationSuccessfully"
+        >
+           Thank you for your lovely heart
+          <i class="fa-solid fa-heart text-blue"></i>
+        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+            <button type="submit" id="sendDonate" onclick="donationUsers()" class="btn btn-success continueBtn" data-bs-dismiss="modal">Send donation</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script
       src="https://kit.fontawesome.com/7ec47829ba.js"
       crossorigin="anonymous"
     ></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/about.js" type="module"></script>
+    <script src="./js/register.js"></script>
   </body>
 </html>

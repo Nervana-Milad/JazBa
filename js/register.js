@@ -2,13 +2,83 @@ var userEmailInput = document.getElementById("userEmail");
 var userPassInput = document.getElementById("userPass");
 var userNameInput = document.getElementById("userName");
 var emailExistsError = document.getElementById("emailExistsError");
-// var registeredSuccessfully = document.getElementById("registeredSuccessfully");
+//
+var userDonationInput = document.querySelector("#userDonation");
+var userPhoneInput = document.querySelector("#userPhone");
+var userCountryInput = document.querySelector("#userCountry");
+var userStateInput = document.querySelector("#userState");
+let donationSuccessfully = document.getElementById("donationSuccessfully");
+
+var whatDonation = document.querySelector("#whatDonation");
+var continueBtn = document.getElementById("continueBtn");
+//
+
+let registerdSuccessfully = document.getElementById("registerdSuccessfully");
 
 var localUsers = "allUsers";
 var allUsers = [];
 
 var allUsers = JSON.parse(localStorage.getItem(localUsers)) || [];
 
+// function signUpUser() {
+//   var user = {
+//     name: userNameInput.value,
+//     email: userEmailInput.value,
+//     password: userPassInput.value,
+//     amout: "", // Placeholder for amount (will be added later)
+//     phone: "", // Placeholder for phone (will be added later)
+//     country: "", // Placeholder for country (will be added later)
+//     state: "", // Placeholder for state (will be added later)
+//   };
+
+//   if (isEmailExists(user.email)) {
+//     emailExistsError.classList.replace("d-none", "d-block");
+//     userEmailInput.classList.add("is-invalid");
+//     return;
+//   } else {
+//     emailExistsError.classList.replace("d-block", "d-none");
+//     if (
+//       validateFormInputs(userNameInput) &&
+//       validateFormInputs(userEmailInput) &&
+//       validateFormInputs(userPassInput)
+//     ) {
+//       // Save user registration information to localStorage
+//       localStorage.setItem("userData", JSON.stringify(user));
+//       registerdSuccessfully.classList.replace("d-none", "d-block");
+//       setTimeout(function () {
+//         window.location.assign("./index.html");
+//       }, 2000);
+
+//       console.log("User added successfully");
+//     } else {
+//       console.log("Invalid input");
+//     }
+//   }
+// }
+
+// function donationUsers() {
+//   console.log("Donation function executed");
+//   var user = JSON.parse(localStorage.getItem("userData")); // Retrieve user data from localStorage
+
+//   // Update user object with donation details
+//   user.amout = userDonationInput.value;
+//   user.phone = userPhoneInput.value;
+//   user.country = userCountryInput.value;
+//   user.state = userStateInput.value;
+
+//   if (
+//     validateFormInputs(userDonationInput) &&
+//     validateFormInputs(userPhoneInput) &&
+//     validateFormInputs(userStateInput)
+//   ) {
+//     // Update localStorage with combined user and donation information
+//     localStorage.setItem("userData", JSON.stringify(user));
+//     donationSuccessfully.classList.replace("d-none", "d-block");
+//     console.log("Donation added successfully");
+//   } else {
+//     console.log("Invalid donation");
+//   }
+// }
 function signUpUser() {
   var user = {
     name: userNameInput.value,
@@ -42,6 +112,35 @@ function signUpUser() {
   }
 }
 
+function donationUsers() {
+  console.log("Doooooooooooooooooooooooooooooooooooooooooooo");
+  var user = {
+    amout: userDonationInput.value,
+    phone: userPhoneInput.value,
+    country: userCountryInput.value,
+    state: userStateInput.value,
+  };
+
+  if (
+    validateFormInputs(userDonationInput) &&
+    validateFormInputs(userPhoneInput) &&
+    validateFormInputs(userStateInput)
+  ) {
+    allUsers.push(user);
+    localStorage.setItem(localUsers, JSON.stringify(allUsers));
+    donationSuccessfully.classList.replace("d-none", "d-block");
+    console.log("Donation added successfully");
+  } else {
+    console.log("Invalid donation");
+  }
+}
+
+let closeBtn = Array.from(document.querySelectorAll(".closeBtn"));
+for (let i = 0; i < closeBtn.length; i++) {
+  closeBtn[i].addEventListener("click", clearDonationForm);
+  whatDonation.textContent = `Donation amount: 0`;
+}
+
 function isEmailExists(email) {
   return allUsers.some(function (user) {
     return user.email === email;
@@ -54,6 +153,11 @@ function validateFormInputs(ele) {
     userEmail: /^.{3,}@(gmail|yahoo).com$/,
     userPass:
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+[{\]};:'",/?]).{8,}$/,
+    userDonation: /^([1-9][0-9]{3,}|1000)$/,
+    userPhone: /^(010|011|012|015)[0-9]{8}$/,
+    userCounty:
+      /^(United States|Canada|United Kingdom|Australia|Germany|France|India|Japan|Egypt)$/,
+    userState: /^[A-Za-z\s]{3,99}$/,
   };
 
   var isValid = regex[ele.id].test(ele.value);
@@ -79,6 +183,13 @@ function validateFormInputs(ele) {
   return isValid;
 }
 
+//
+function getAmount() {
+  whatDonation.textContent = "Donation amount: " + userDonationInput.value;
+}
+userDonationInput.addEventListener("input", getAmount);
+//
+
 function clearForm() {
   userEmailInput.value = "";
   userPassInput.value = "";
@@ -87,3 +198,133 @@ function clearForm() {
   userPassInput.classList.remove("is-valid", "is-invalid");
   userNameInput.classList.remove("is-valid", "is-invalid");
 }
+
+function clearDonationForm() {
+  userDonationInput.value = "";
+  userPhoneInput.value = "";
+  userCountryInput.value = "";
+  userStateInput.value = "";
+  userDonationInput.classList.remove("is-valid", "is-invalid");
+  userPhoneInput.classList.remove("is-valid", "is-invalid");
+  userCountryInput.classList.remove("is-valid", "is-invalid");
+  userStateInput.classList.remove("is-valid", "is-invalid");
+}
+
+// document
+//   .querySelectorAll("[data-bs-dismiss='modal']")
+//   .addEventListener("click", function () {
+//     const closeBtns = Array.from(
+//       document.querySelectorAll("[data-bs-dismiss='modal']")
+//     );
+//     for (let index = 0; index < closeBtns.length; index++) {
+//       whatDonation.textContent = "Donation amount: 0";
+//     }
+//   });
+
+function checkFields() {
+  const requiredInputs = document.querySelectorAll("input[required]");
+  const continueBtn = document.querySelector(".continueBtn");
+  let allFieldsFilled = true;
+  requiredInputs.forEach(function (input) {
+    if (!input.value.trim()) {
+      allFieldsFilled = false;
+    }
+  });
+  if (allFieldsFilled) {
+    continueBtn.removeAttribute("disabled");
+  } else {
+    continueBtn.setAttribute("disabled", "disabled");
+  }
+}
+document.querySelectorAll("input[required]").forEach(function (input) {
+  input.addEventListener("input", checkFields);
+});
+
+continueBtn.addEventListener("click", function () {
+  const selectedPaymentMethod = document.querySelector(
+    'input[name="paymentMethod"]:checked'
+  );
+  if (selectedPaymentMethod) {
+    const paymentMethod = selectedPaymentMethod.value;
+    const modalTitle = document.getElementById("paymentMethodDetailsLabel");
+    const modalContent = document.getElementById("paymentMethodDetailsContent");
+    modalTitle.textContent = paymentMethod + " details";
+    let methodDetails = "";
+    switch (paymentMethod) {
+      case "Wire Transfer":
+        methodDetails =
+          "Wire Transfer: Please provide your bank account details for the transfer.";
+        break;
+      case "Credit Card":
+        methodDetails = `<div>
+            Credit Card: Enter your credit card details to proceed with the payment.
+            <div class="mt-3">
+              <label for="creditCardNumber">Credit Card Number:</label>
+              <input type="text" id="creditCardNumber" oninput="checkCridetCard()" class="form-control" maxlength="16" pattern="\\d{16}" required>
+              <span class="text-danger d-none" id="creditCardError">Credit card number must be 16 digits.</span>
+            </div>
+          </div>
+`;
+        break;
+      case "Debit Card":
+        methodDetails = `<div>
+            Debit Card: Enter your debit card details to proceed with the payment.
+            <div class="mt-3">
+              <label for="debitCardNumber">Debit Card Number:</label>
+              <input type="text" id="debitCardNumber" oninput="checkDepitCard()" class="form-control" maxlength="16" pattern="\\d{16}" required>
+              <span class="text-danger d-none" id="debitCardError">Debit card number must be 16 digits.</span>
+            </div>
+          </div>
+`;
+        break;
+      case "E-Wallet":
+        methodDetails =
+          "E-Wallet: You can pay using various e-wallet options available.";
+        break;
+      case "Online Banking":
+        methodDetails =
+          "Online Banking: You will be redirected to your bank's online banking portal.";
+        break;
+      case "UPI / QR":
+        methodDetails =
+          "UPI / QR: Scan the QR code or enter your UPI ID to proceed with the payment.";
+        break;
+      default:
+        methodDetails = "Please select a valid payment method.";
+    }
+    modalContent.innerHTML = methodDetails;
+    const paymentMethodDetailsModal = new bootstrap.Modal(
+      document.getElementById("paymentMethodDetailsModal")
+    );
+    paymentMethodDetailsModal.show();
+  } else {
+    console.log("No payment method selected.");
+  }
+});
+
+function checkCridetCard() {
+  let creditCardNumber = document.getElementById("creditCardNumber").value;
+  let creditCardError = document.getElementById("creditCardError");
+  if (/^\d{16}$/.test(creditCardNumber)) {
+    console.log("Credit Card Number:", creditCardNumber);
+    creditCardError.classList.add("d-none");
+  } else {
+    creditCardError.classList.remove("d-none");
+  }
+}
+
+function checkDepitCard() {
+  let debitCardNumber = document.getElementById("debitCardNumber").value;
+  let debitCardError = document.getElementById("debitCardError");
+  if (/^\d{16}$/.test(debitCardNumber)) {
+    console.log("Credit Card Number:", debitCardNumber);
+    debitCardError.classList.add("d-none");
+  } else {
+    debitCardError.classList.remove("d-none");
+  }
+}
+
+// let sendDonate = document.querySelector("#sendDonate");
+// sendDonate.addEventListener("click", sendToEmail);
+
+// function sendToEmail() {}

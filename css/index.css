@@ -4,12 +4,7 @@
   box-sizing: border-box;
   margin: 0;
 }
-/* .bg-image {
-  background-image: url("../images/bg.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-} */
+
 .my-form {
   border: 2px solid #155d7300;
   border-radius: 12px;

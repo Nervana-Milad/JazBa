@@ -21,6 +21,7 @@
 
 body {
   background-color: var(--bg-color);
+  color: var(--main-color);
 }
 
 main {
@@ -67,4 +68,60 @@ main {
   --bs-card-border-color: var(--main-color);
   border: 3px solid var(--main-color);
   border-radius: 5px;
+}
+
+.pt-7 {
+  padding-top: 7rem;
+}
+
+.my-form {
+  background-color: #00000000;
+  box-shadow: none;
+}
+
+.input-box input {
+  border: 2px solid var(--main-color);
+  color: var(--main-color);
+  font-size: 17px;
+}
+
+.btn-success {
+  --bs-btn-bg: var(--main-color);
+  --bs-btn-border-color: var(--main-color);
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: var(--main-color);
+  --bs-btn-active-bg: var(--main-color);
+  --bs-btn-active-border-color: var(--main-color);
+  --bs-btn-disabled-bg: var(--main-color);
+  --bs-btn-disabled-border-color: var(--main-color);
+}
+
+.btn-success:hover {
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+.form-control {
+  color: var(--main-color);
+
+  background-color: transparent;
+
+  border: 2px solid var(--main-color);
+  border-radius: 1rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input-box input::placeholder {
+  color: var(--main-color);
+  background-color: transparent;
+}
+
+.input-box input:focus {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--main-color);
+}
+
+.continueBtn {
+  border: 3px solid #6e2300;
 }
