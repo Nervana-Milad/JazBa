@@ -69,17 +69,6 @@ main {
   border-radius: 5px;
 }
 
-/* .container {
-  overflow: hidden;
-}
-
-.card {
-  transition: transform 2s;
-}
-
-.card:hover {
-  transform: rotateZ(360deg);
-} */
 .card {
   position: relative;
   height: calc(100% - 30px);

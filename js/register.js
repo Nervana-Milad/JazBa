@@ -19,66 +19,7 @@ var localUsers = "allUsers";
 var allUsers = [];
 
 var allUsers = JSON.parse(localStorage.getItem(localUsers)) || [];
-
-// function signUpUser() {
-//   var user = {
-//     name: userNameInput.value,
-//     email: userEmailInput.value,
-//     password: userPassInput.value,
-//     amout: "", // Placeholder for amount (will be added later)
-//     phone: "", // Placeholder for phone (will be added later)
-//     country: "", // Placeholder for country (will be added later)
-//     state: "", // Placeholder for state (will be added later)
-//   };
-
-//   if (isEmailExists(user.email)) {
-//     emailExistsError.classList.replace("d-none", "d-block");
-//     userEmailInput.classList.add("is-invalid");
-//     return;
-//   } else {
-//     emailExistsError.classList.replace("d-block", "d-none");
-//     if (
-//       validateFormInputs(userNameInput) &&
-//       validateFormInputs(userEmailInput) &&
-//       validateFormInputs(userPassInput)
-//     ) {
-//       // Save user registration information to localStorage
-//       localStorage.setItem("userData", JSON.stringify(user));
-//       registerdSuccessfully.classList.replace("d-none", "d-block");
-//       setTimeout(function () {
-//         window.location.assign("./index.html");
-//       }, 2000);
-
-//       console.log("User added successfully");
-//     } else {
-//       console.log("Invalid input");
-//     }
-//   }
-// }
-
-// function donationUsers() {
-//   console.log("Donation function executed");
-//   var user = JSON.parse(localStorage.getItem("userData")); // Retrieve user data from localStorage
-
-//   // Update user object with donation details
-//   user.amout = userDonationInput.value;
-//   user.phone = userPhoneInput.value;
-//   user.country = userCountryInput.value;
-//   user.state = userStateInput.value;
-
-//   if (
-//     validateFormInputs(userDonationInput) &&
-//     validateFormInputs(userPhoneInput) &&
-//     validateFormInputs(userStateInput)
-//   ) {
-//     // Update localStorage with combined user and donation information
-//     localStorage.setItem("userData", JSON.stringify(user));
-//     donationSuccessfully.classList.replace("d-none", "d-block");
-//     console.log("Donation added successfully");
-//   } else {
-//     console.log("Invalid donation");
-//   }
-// }
+//trueeeeeeeeeee
 function signUpUser() {
   var user = {
     name: userNameInput.value,
@@ -112,8 +53,8 @@ function signUpUser() {
   }
 }
 
+// trueeeeee
 function donationUsers() {
-  console.log("Doooooooooooooooooooooooooooooooooooooooooooo");
   var user = {
     amout: userDonationInput.value,
     phone: userPhoneInput.value,
@@ -135,10 +76,28 @@ function donationUsers() {
   }
 }
 
+function isEmailExists(email) {
+  return appData.users.some((user) => user.email === email);
+}
+
+function validateFormInputs(input) {
+  return input.value.trim() !== "";
+}
+
+function clearForm() {
+  userNameInput.value = "";
+  userEmailInput.value = "";
+  userPassInput.value = "";
+  userDonationInput.value = "";
+  userPhoneInput.value = "";
+  userCountryInput.value = "";
+  userStateInput.value = "";
+}
+
 let closeBtn = Array.from(document.querySelectorAll(".closeBtn"));
 for (let i = 0; i < closeBtn.length; i++) {
   closeBtn[i].addEventListener("click", clearDonationForm);
-  whatDonation.textContent = `Donation amount: 0`;
+  whatDonation.textContent = "Donation amount: " + 0;
 }
 
 function isEmailExists(email) {
@@ -209,17 +168,6 @@ function clearDonationForm() {
   userCountryInput.classList.remove("is-valid", "is-invalid");
   userStateInput.classList.remove("is-valid", "is-invalid");
 }
-
-// document
-//   .querySelectorAll("[data-bs-dismiss='modal']")
-//   .addEventListener("click", function () {
-//     const closeBtns = Array.from(
-//       document.querySelectorAll("[data-bs-dismiss='modal']")
-//     );
-//     for (let index = 0; index < closeBtns.length; index++) {
-//       whatDonation.textContent = "Donation amount: 0";
-//     }
-//   });
 
 function checkFields() {
   const requiredInputs = document.querySelectorAll("input[required]");
@@ -323,8 +271,3 @@ function checkDepitCard() {
     debitCardError.classList.remove("d-none");
   }
 }
-
-// let sendDonate = document.querySelector("#sendDonate");
-// sendDonate.addEventListener("click", sendToEmail);
-
-// function sendToEmail() {}
