@@ -19,7 +19,7 @@ var localUsers = "allUsers";
 var allUsers = [];
 
 var allUsers = JSON.parse(localStorage.getItem(localUsers)) || [];
-//trueeeeeeeeeee
+
 function signUpUser() {
   var user = {
     name: userNameInput.value,
@@ -53,7 +53,6 @@ function signUpUser() {
   }
 }
 
-// trueeeeee
 function donationUsers() {
   var user = {
     amout: userDonationInput.value,
@@ -199,10 +198,6 @@ continueBtn.addEventListener("click", function () {
     modalTitle.textContent = paymentMethod + " details";
     let methodDetails = "";
     switch (paymentMethod) {
-      case "Wire Transfer":
-        methodDetails =
-          "Wire Transfer: Please provide your bank account details for the transfer.";
-        break;
       case "Credit Card":
         methodDetails = `<div>
             Credit Card: Enter your credit card details to proceed with the payment.
@@ -225,20 +220,28 @@ continueBtn.addEventListener("click", function () {
           </div>
 `;
         break;
-      case "E-Wallet":
-        methodDetails =
-          "E-Wallet: You can pay using various e-wallet options available.";
+      case "Paypal":
+        methodDetails = `<div>
+            Paypal: Enter your Paypal email to proceed with the payment.
+            <div class="mt-3">
+              <label for="paypalEmail">Write email you want to send to:</label>
+              <input type="text" id="paypalEmail" oninput="checkPaypal()" class="form-control" required>
+              <span class="text-danger d-none" id="paypalError">Enter a vaid email...</span>
+            </div>
+          </div>
+`;
         break;
-      case "Online Banking":
-        methodDetails =
-          "Online Banking: You will be redirected to your bank's online banking portal.";
+      case "Mobile Banking":
+        methodDetails = `<div>
+            Mobile Banking: Enter phone you want to send to.
+            <div class="mt-3">
+              <label for="mobileToSend">Phone:</label>
+              <input type="text" id="mobileToSend" oninput="checkMobileBanking()" class="form-control" required>
+              <span class="text-danger d-none" id="mobileBankingError">Enter a vaid number phone.</span>
+            </div>
+          </div>
+`;
         break;
-      case "UPI / QR":
-        methodDetails =
-          "UPI / QR: Scan the QR code or enter your UPI ID to proceed with the payment.";
-        break;
-      default:
-        methodDetails = "Please select a valid payment method.";
     }
     modalContent.innerHTML = methodDetails;
     const paymentMethodDetailsModal = new bootstrap.Modal(
@@ -269,5 +272,27 @@ function checkDepitCard() {
     debitCardError.classList.add("d-none");
   } else {
     debitCardError.classList.remove("d-none");
+  }
+}
+
+function checkPaypal() {
+  let paypalEmail = document.getElementById("paypalEmail").value;
+  let paypalError = document.getElementById("paypalError");
+  if (/^.{3,}@(gmail|yahoo).com$/.test(paypalEmail)) {
+    console.log("Paypal email:", paypalEmail);
+    paypalError.classList.add("d-none");
+  } else {
+    paypalError.classList.remove("d-none");
+  }
+}
+
+function checkMobileBanking() {
+  let mobileToSend = document.getElementById("mobileToSend").value;
+  let mobileBankingError = document.getElementById("mobileBankingError");
+  if (/^(010|011|012|015)[0-9]{8}$/.test(mobileToSend)) {
+    console.log("Paypal email:", mobileToSend);
+    mobileBankingError.classList.add("d-none");
+  } else {
+    mobileBankingError.classList.remove("d-none");
   }
 }
