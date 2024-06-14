@@ -45,7 +45,6 @@ function signUpUser() {
       setTimeout(function () {
         window.location.assign("./index.html");
       }, 2000);
-
       console.log("User added successfully");
     } else {
       console.log("Invalid input");
@@ -73,14 +72,6 @@ function donationUsers() {
   } else {
     console.log("Invalid donation");
   }
-}
-
-function isEmailExists(email) {
-  return appData.users.some((user) => user.email === email);
-}
-
-function validateFormInputs(input) {
-  return input.value.trim() !== "";
 }
 
 function clearForm() {
